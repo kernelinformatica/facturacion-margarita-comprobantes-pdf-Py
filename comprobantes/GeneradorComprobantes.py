@@ -199,7 +199,17 @@ class GeneradorComprobantes(FacturacionConnnection ):
                 cantidad = item[27]
                 prefijoComprobanteImputado = item[56]
                 numeroComprobanteImputado = item[57]
-                numeroComprobanteMuestra= prefijoComprobanteImputado.zfill(4) + "-" + numeroComprobanteImputado.zfill(8)
+                if prefijoComprobanteImputado is None:
+                    prefijo = 0
+                else:
+                    prefijo = prefijoComprobanteImputado[:4]
+
+                if numeroComprobanteImputado is None:
+                    nro = 0
+                else:
+                    nro = numeroComprobanteImputado[:8]
+
+                numeroComprobanteMuestra= str(prefijo) + "-" + str(nro)
                 descuento = row[31]
                 unidadDescuento = row[33]
                 if descuento == None:
@@ -558,7 +568,7 @@ def generarComprobante():
 if __name__ == "__main__":
 
     #ID REPORTE 2
-    '''parametros={"empresa": "2" ,
+    parametros={"empresa": "2" ,
                 "titulo": "Stock Por Producto",
                 "fechaDesde": "2024-01-01",
                 "fechaHasta": "2024-10-21",
@@ -573,8 +583,8 @@ if __name__ == "__main__":
                 "orden": "0",
                 "tipoEstado": "0"}
     #generador = GeneradorComprobantes()
-    #generador.main(parametros, 2508, "general", 1)'''
+    #generador.main(parametros, 2525, "general", 1)
     app.run(debug=True, port=6001)
 
-    #if __name__ == "__main__":
-    #    app.run(debug=True, port=6001)
+#if __name__ == "__main__":
+    #app.run(debug=True, port=6001)
