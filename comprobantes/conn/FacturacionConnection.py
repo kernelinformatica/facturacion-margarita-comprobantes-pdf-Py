@@ -35,7 +35,7 @@ class FacturacionConnection:
         try:
             cursor.execute(query)
             self.conn.commit()
-           # print("Query ejecutado con éxito")
+            print("Query ejecutado con éxito")
         except Error as e:
             print(f"Error: {e}")
             return None

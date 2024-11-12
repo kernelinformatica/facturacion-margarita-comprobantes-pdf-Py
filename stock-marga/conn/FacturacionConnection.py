@@ -10,8 +10,8 @@ class FacturacionConnection:
         self.password = "alberdi11"
         self.port = "3306"
         self.conn = self.create_connection()
-
         '''
+
         self.host = "10.0.0.33"
         self.database = "dbFacturacion_marga_20240924"
         self.user = "root"

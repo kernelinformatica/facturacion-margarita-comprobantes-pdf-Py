@@ -14,7 +14,7 @@ class StockProdumo(FacturacionConnnection):
         print("::: Iniciando ..")
         hoy = datetime.today().date()
         cursor = self.conn.cursor()
-        cursor.execute("SELECT rubro, codigo_nuevo AS codProducto, descripcion, cantidad FROM stock_arma_temp where importado = 'N'")
+        cursor.execute("SELECT rubro, codigo_nuevo AS codProducto, descripcion, cantidad FROM stock_arma_temp_calchaqui where importado = 'N' and codigo_nuevo > 0")
         rows = cursor.fetchall()
         insert_statements = []
         for row in rows:
@@ -33,7 +33,8 @@ class StockProdumo(FacturacionConnnection):
                 cantidad = row[3]
                 fecha =  '2024-07-31'
                 #xxx = Produmo , no ejecutar dos veces porque duplica no le puse el control
-                insert_statement = f"INSERT INTO xxxx (numero, item, fecha, detalle, cantidad, idCteTipo, idDepositos, idProductos, idFactDetalle, stock)VALUES (20240731, 0,'2024-07-31' ,'Inventario Físico', {cantidad}, 89, 6, {idProducto}, 0, 1);"
+                idDeposito = 10
+                insert_statement = f"INSERT INTO Produmo (numero, item, fecha, detalle, cantidad, idCteTipo, idDepositos, idProductos, idFactDetalle, stock)VALUES (20240731, 0,'2024-07-31' ,'Inventario Físico', {cantidad}, 89, {idDeposito}, {idProducto}, 0, 1);"
                 cursor.execute(insert_statement)
                 self.conn.commit()
                 print("Insertado", row)
